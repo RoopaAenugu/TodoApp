@@ -159,6 +159,12 @@ function addSubtask(listId, subtaskName, subtaskPriority, subtaskDate, subtaskTi
             alert("subtask is already present");
             return;
         }
+        let subtaskDateTime = new Date(`${subtaskDate}T${subtaskTime}`);
+       let currentDateTime = new Date();
+    if (subtaskDateTime < currentDateTime) {
+         alert("The subtask time is in the past");
+         return;
+    }
         todoItem.subtasks.push(newSubtask);
         subtasktemp.push(newSubtask);
         let subtaskId="subtask"+subtasktemp[0].subuniqueno;
@@ -403,6 +409,12 @@ function addto() {
     if(isDuplicate){
         alert("task is already present");
         return;
+    }
+    let taskDateTime = new Date(`${datevalue}T${timevalue}`);
+    let currentDateTime = new Date();
+    if (taskDateTime < currentDateTime) {
+    alert("The task time is in the past");
+    return;
     }
     todoList.push(newtodo);
     sortTodoList(sourcevalue);
