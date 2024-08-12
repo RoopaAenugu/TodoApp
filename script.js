@@ -238,6 +238,12 @@ subeditForm.onsubmit = function(event) {
     let newTime = document.getElementById("subeditTime").value;
     let subItem = subEditArray;
    if (subItem) {
+        let taskDateTime = new Date(`${newDate}T${newTime}`);
+        let currentDateTime = new Date();
+        if (taskDateTime < currentDateTime) {
+            alert("The sub task time is in the past");
+            return;
+        }
         subItem.text = newText;
         subItem.priority = newPriority;
         subItem.date = newDate;
@@ -285,6 +291,12 @@ editForm.onsubmit = function(event) {
     let newTime = document.getElementById("editTime").value;
     let todoItem = todoList.find(todo => todo.uniqueno === currentEditId);
     if (todoItem) {
+        let taskDateTime = new Date(`${newDate}T${newTime}`);
+        let currentDateTime = new Date();
+        if (taskDateTime < currentDateTime) {
+            alert("The task time is in the past");
+            return;
+        }
         todoItem.text = newText;
         todoItem.priority = newPriority;
         todoItem.date = newDate;
